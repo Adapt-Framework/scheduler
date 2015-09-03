@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adapt_framework>
+    <bundle>
+        <name>scheduler</name>
+        <label>Cron style task manager</label>
+        <version>1.0.0</version>
+        <type>extension</type>
+        <description>Provides an easy to use task management system for scheduling or running background tasks.</description>
+        <copyright>2015 Adapt Framework</copyright>
+        <settings>
+            <category name="Scheduler">
+                <setting>
+                    <name>scheduler.spawn_time</name>
+                    <label>How long in advance should a task be spawned? (In hours, default 2)</label>
+                    <default_value>2</default_value>
+                </setting>
+            </category>
+        </settings>
+        <schema_installed>Yes</schema_installed>
+    </bundle>
+</adapt_framework>
