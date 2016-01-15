@@ -1,11 +1,11 @@
 <?php
 
-namespace extensions\scheduler{
+namespace adapt\scheduler{
     
     /* Prevent Direct Access */
     defined('ADAPT_STARTED') or die;
     
-    class task extends \frameworks\adapt\base{
+    class task extends \adapt\base{
         
         /*
          * This class is called from the command

@@ -2,7 +2,7 @@
 <?php
 
 /* Set the namespace */
-namespace extensions\scheduler;
+namespace adapt\scheduler;
 
 
 /*

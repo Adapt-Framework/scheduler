@@ -1,18 +1,18 @@
 <?php
 
-namespace extensions\scheduler{
+namespace adapt\scheduler{
     
     /* Prevent direct access */
     defined('ADAPT_STARTED') or die;
     
-    class model_task extends \frameworks\adapt\model{
+    class model_task extends \adapt\model{
         
         public function __construct($id = null, $data_source = null){
             parent::__construct('task', $id, $data_source);
         }
         
         public function can_run($date = null){
-            $date = new \frameworks\adapt\date($date);
+            $date = new \adapt\date($date);
             $months = $this->get_months();
             $matched = false;
             foreach($months as $month){
@@ -76,7 +76,7 @@ namespace extensions\scheduler{
         }
         
         public function can_spawn(){
-            $date = new \frameworks\adapt\date($date);
+            $date = new \adapt\date($date);
             $date->goto_hours($this->setting('scheduler.spawn_time'));
             
             for($i = 0; $i <= 59; $i++){
