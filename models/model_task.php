@@ -11,7 +11,20 @@ namespace adapt\scheduler{
             parent::__construct('task', $id, $data_source);
         }
         
+        public function are_minutes_valid(){
+            
+        }
+        
         public function can_run($date = null){
+            
+            if ($this->is_loaded){
+                print "Chcking\n";
+            }
+            
+            
+            return false;
+        
+        
             $date = new \adapt\date($date);
             $months = $this->get_months();
             $matched = false;
