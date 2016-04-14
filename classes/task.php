@@ -57,6 +57,8 @@ namespace adapt\scheduler{
             $this->_task->save();
             $this->_log->date_started = $this->data_source->sql('now()');
             $this->_log->save();
+            
+            $this->set_progress(0);
         }
         
         public function task(){
@@ -72,6 +74,8 @@ namespace adapt\scheduler{
             $this->_log->output = $this->_output;
             $this->_log->date_ended = $this->data_source->sql('now()');
             $this->_log->save();
+            
+            $this->set_progress(100);
         }
         
         
