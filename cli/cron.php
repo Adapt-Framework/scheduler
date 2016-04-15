@@ -24,7 +24,9 @@ while(true){
         $task->load_by_data($data);
         
         if ($task->can_run()){
-            
+            $task->status = "spawned";
+            $task->save();
+            $task->execute();
         }
     }
     
