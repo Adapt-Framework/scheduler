@@ -38,6 +38,18 @@
                     <field name="days_of_month" data-type="varchar" max-length="32" />
                     <field name="days_of_week" data-type="varchar" max-length="32" />
                     <field name="months" data-type="varchar" max-length="32" />
+                    <record>
+                        <name>check_cron</name>
+                        <status>waiting</status>
+                        <label>Check cron</label>
+                        <description>Checks for items that have failed or hung and restarts them</description>
+                        <class_name>\adapt\scheduler\task_cron_check</class_name>
+                        <minutes>0</minutes>
+                        <hours>*</hours>
+                        <days_of_month>*</days_of_month>
+                        <days_of_week>*</days_of_week>
+                        <months>*</months>
+                    </record>
                 </table>
                 <table name="task_log">
                     <field name="task_log_id" key="primary" auto-increment="Yes" data-type="bigint" label="Task log #" />

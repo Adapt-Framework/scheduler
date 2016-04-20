@@ -59,6 +59,9 @@ namespace adapt\scheduler{
             $this->_log->save();
             
             $this->set_progress(0);
+            
+            $this->_output = $this->task();
+            $this->end();
         }
         
         public function task(){

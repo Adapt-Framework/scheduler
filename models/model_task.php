@@ -227,42 +227,42 @@ namespace adapt\scheduler{
             $minutes = $this->parse_minutes();
             
             if (in_array(intval(date('i')), $minutes)){
-                //print "Passed minutes\n";
+                print "Passed minutes\n";
                 
                 $hours = $this->parse_hours();
                 
                 if (in_array(intval(date('H')), $hours)){
-                    //print "Passed hours\n";
+                    print "Passed hours\n";
                     
                     $day_of_month = $this->parse_day_of_month();
                     
                     if (in_array(intval(date('d')), $day_of_month)){
-                        //print "Passed dom\n";
+                        print "Passed dom\n";
                         
                         $months = $this->parse_months();
                         
                         //print_r($months);
                         if (in_array(intval(date('m')), $months)){
-                            //print "Passed months\n";
+                            print "Passed months\n";
                             return true;
                             
                         }else{
-                            //print "Failed months\n";
+                            print "Failed months\n";
                             return false;
                         }
                     }else{
                         
-                        //print "Failed day of month\n";
+                        print "Failed day of month\n";
                         return false;
                     }
                     
                 }else{
-                    //print "Failed hours\n";
+                    print "Failed hours\n";
                     return false;
                 }
                 
             }else{
-                //print "Failed minutes\n";
+                print "Failed minutes\n";
                 return false;
             }
             
@@ -272,17 +272,18 @@ namespace adapt\scheduler{
             if ($this->is_loaded && $this->can_run()){
                 $this->status = 'spawned';
                 if ($this->save()){
-                    $path = ADAPT_PATH . $this->name . "/" . $this->name . "-" . $this->version . "/cli/task.php";
-                    $command = 'bash -c "exec nohup setsid ' . $path . ' ' . ADAPT_PATH . ' ' . $this->taks_id . ' > /dev/null 2>&1 &"';
+                    $path = ADAPT_PATH . "scheduler/scheduler-1.0.0/cli/task.php";
+                    $command = 'bash -c "exec nohup setsid ' . $path . ' ' . ADAPT_PATH . ' ' . $this->task_id . ' > /dev/null 2>&1 &"';
+                    print $command . "\n";
                     exec($command);
                 }
             }
         }
         
         public function execute(){
-            if ($this->is_loaded && $task->status == 'spawned'){
+            if ($this->is_loaded && $this->status == 'spawned'){
                 $log = new model_task_log();
-                $log->task_id = $task->task_id;
+                $log->task_id = $this->task_id;
                 
                 $class = $this->class_name;
                 
@@ -291,11 +292,14 @@ namespace adapt\scheduler{
                     
                     if ($task instanceof \adapt\scheduler\task){
                         $task->start();
-                        $task->task();
-                        $task->end();
+                        //$task->task();
+                        //$task->end();
                     }
                 }
             }
+            
+            $this->status = "waiting";
+            $this->save();
         }
         
         //public function can_run($date = null){

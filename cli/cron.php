@@ -17,23 +17,15 @@ while(true){
         ->execute(0)
         ->results();
     
-    print_r($tasks);
-    
     foreach($tasks as $data){
         $task = new model_task();
         $task->load_by_data($data);
         
         if ($task->can_run()){
-            $task->status = "spawned";
-            $task->save();
-            $task->execute();
+            $task->run();
         }
     }
     
-    //print_r($time);
-    //
-    //print $i . "\n";
-    //$i++;
     sleep(60);
 }
 
