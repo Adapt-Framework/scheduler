@@ -20,12 +20,12 @@ namespace adapt\scheduler{
             
             $sql = $this->data_source->sql
                 ->select('*')
-                ->from('task')
+                ->from('task', 't')
                 ->where(
                     new sql_and(
-                        new sql_cond('status', sql::EQUALS, sql::q('running')),
-                        new sql_cond('date_modified', sql::GREATER_THAN, sql::q($c->date("Y-m-d H:i:s"))),
-                        new sql_cond('date_deleted', sql::IS, new sql_null())
+                        new sql_cond('t.status', sql::EQUALS, sql::q('running')),
+                        new sql_cond('t.date_modified', sql::GREATER_THAN, sql::q($c->date("Y-m-d H:i:s"))),
+                        new sql_cond('t.date_deleted', sql::IS, new sql_null())
                     )
                 );
             
