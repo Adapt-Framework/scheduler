@@ -293,7 +293,7 @@ namespace adapt\scheduler{
                     if ($task instanceof \adapt\scheduler\task){
                         $task->start();
                         //$task->task();
-                        //$task->end();
+                        $task->end();
                     }
                 }
             }

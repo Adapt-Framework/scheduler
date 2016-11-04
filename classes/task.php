@@ -55,9 +55,10 @@ namespace adapt\scheduler{
              */
             $this->_task->status = 'running';
             $this->_task->save();
-            $this->_log->date_started = $this->data_source->sql('now()');
+            //$this->_log->date_started = $this->data_source->sql('now()');
+            $this->progress = '0';
             $this->_log->save();
-            
+            $this->_log->errors(true);
             $this->set_progress(0);
             
             $this->_output = $this->task();
@@ -75,10 +76,11 @@ namespace adapt\scheduler{
             $this->_task->status = 'waiting';
             $this->_task->save();
             $this->_log->output = $this->_output;
-            $this->_log->date_ended = $this->data_source->sql('now()');
-            $this->_log->save();
+            //$this->_log->date_ended = $this->data_source->sql('now()');
             
-            $this->set_progress(100);
+            $this->_log->progress = '100';
+            $this->_log->errors(true);
+            $this->_log->save();
         }
         
         
