@@ -227,42 +227,42 @@ namespace adapt\scheduler{
             $minutes = $this->parse_minutes();
             
             if (in_array(intval(date('i')), $minutes)){
-                print "Passed minutes\n";
+                //print "Passed minutes\n";
                 
                 $hours = $this->parse_hours();
                 
                 if (in_array(intval(date('H')), $hours)){
-                    print "Passed hours\n";
+                    //print "Passed hours\n";
                     
                     $day_of_month = $this->parse_day_of_month();
                     
                     if (in_array(intval(date('d')), $day_of_month)){
-                        print "Passed dom\n";
+                        //print "Passed dom\n";
                         
                         $months = $this->parse_months();
                         
                         //print_r($months);
                         if (in_array(intval(date('m')), $months)){
-                            print "Passed months\n";
+                            //print "Passed months\n";
                             return true;
                             
                         }else{
-                            print "Failed months\n";
+                            //print "Failed months\n";
                             return false;
                         }
                     }else{
                         
-                        print "Failed day of month\n";
+                        //print "Failed day of month\n";
                         return false;
                     }
                     
                 }else{
-                    print "Failed hours\n";
+                    //print "Failed hours\n";
                     return false;
                 }
                 
             }else{
-                print "Failed minutes\n";
+                //print "Failed minutes\n";
                 return false;
             }
             

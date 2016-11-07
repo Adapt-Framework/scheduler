@@ -61,7 +61,7 @@ namespace adapt\scheduler{
             $this->_log->errors(true);
             $this->set_progress(0);
             
-            $this->_output = $this->task();
+            $this->_output = trim($this->task());
             $this->end();
         }
         

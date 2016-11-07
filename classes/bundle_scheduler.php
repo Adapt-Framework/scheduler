@@ -17,6 +17,7 @@ namespace adapt\scheduler{
                 if (!$this->is_cron_running()){
                     $path = ADAPT_PATH . $this->name . "/" . $this->name . "-" . $this->version . "/cli/cron.php";
                     $command = 'bash -c "exec nohup setsid ' . $path . ' ' . ADAPT_PATH . ' > /dev/null 2>&1 &"';
+                    //print $command;die();
                     exec($command);
                 }
                 
