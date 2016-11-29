@@ -224,6 +224,13 @@ namespace adapt\scheduler{
                 return false;
             }
             
+            if ($this->date_last_run){
+                $date = new \adapt\date($this->date_last_run);
+                if ($date->date('YmdHi') == date('YmdHi')){
+                    return false;
+                }
+            }
+            
             $minutes = $this->parse_minutes();
             
             if (in_array(intval(date('i')), $minutes)){
@@ -271,6 +278,7 @@ namespace adapt\scheduler{
         public function run(){
             if ($this->is_loaded && $this->can_run()){
                 $this->status = 'spawned';
+                $this->date_last_run = new sql_now();
                 if ($this->save()){
                     $path = ADAPT_PATH . "scheduler/scheduler-1.0.0/cli/task.php";
                     $command = 'bash -c "exec nohup setsid ' . $path . ' ' . ADAPT_PATH . ' ' . $this->task_id . ' > /dev/null 2>&1 &"';

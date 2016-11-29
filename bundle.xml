@@ -14,15 +14,6 @@
                 <version>2.0</version>
             </bundle>
         </depends_on>
-        <settings>
-            <category name="Scheduler">
-                <setting>
-                    <name>scheduler.spawn_time</name>
-                    <label>How long in advance should a task be spawned? (In hours, default 2)</label>
-                    <default_value>2</default_value>
-                </setting>
-            </category>
-        </settings>
         <schema>
             <add>
                 <table name="task">
@@ -38,6 +29,7 @@
                     <field name="days_of_month" data-type="varchar" max-length="32" />
                     <field name="days_of_week" data-type="varchar" max-length="32" />
                     <field name="months" data-type="varchar" max-length="32" />
+                    <field name="date_last_run" data-type="datetime" label="Date last run" />
                     <record>
                         <name>check_cron</name>
                         <status>waiting</status>
