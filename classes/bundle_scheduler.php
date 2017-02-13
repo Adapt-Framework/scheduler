@@ -16,10 +16,22 @@ namespace adapt\scheduler{
                 
                 if (!$this->is_cron_running()){
                     $path = ADAPT_PATH . $this->name . "/" . $this->name . "-" . $this->version . "/cli/cron.php";
-                    $command = 'bash -c "exec nohup setsid ' . $path . ' ' . ADAPT_PATH . ' > /dev/null 2>&1 &"';
-                    //print $command;die();
+                    $command = 'bash -c "exec nohup setsid ' . $path . ' ' . ADAPT_PATH . ' ' . ADAPT_VERSION . ' ' . $this->version . ' > /dev/null 2>&1 &"';
+                    //print $command;
                     exec($command);
                 }
+                
+                // Listen for Adapt updates
+                \adapt\bundle::listen(
+                    \adapt\bundle::EVENT_ON_UPDATE, 
+                    function($data){
+                        if ($data['event_data']['bundle_name'] == 'adapt'){
+                            // Restart the scheduler
+                            $command = "pgrep cron.php | xargs kill";
+                            exec($command);
+                        }
+                    }
+                );
                 
                 return true;
             }
@@ -33,6 +45,19 @@ namespace adapt\scheduler{
             $return = null;
             exec($command, $output, $return);
             return ($return == 0);
+        }
+        
+        public function update(){
+            $new_version = parent::update();
+            
+            if ($new_version !== false){
+                // Restart the scheduler
+                $command = "pgrep cron.php | xargs kill";
+                exec($command);
+                return true;
+            }
+            
+            return false;
         }
     }
     

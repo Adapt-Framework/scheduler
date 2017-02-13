@@ -1,12 +1,13 @@
 #!/usr/bin/php
 <?php
+
 define('TEMP_PATH', sys_get_temp_dir() . '/');
 define('ADAPT_PATH', $argv[1]);
-define('ADAPT_VERSION', '2.0.0');
+define('ADAPT_VERSION', $argv[2]);
 define('ADAPT_STARTED', true);
 require(ADAPT_PATH . 'adapt/adapt-' . ADAPT_VERSION . '/boot.php');
 
-
+//print "foo\n";
 //while(true){
     $tasks = $adapt->data_source->sql
         ->select('*')
@@ -16,7 +17,7 @@ require(ADAPT_PATH . 'adapt/adapt-' . ADAPT_VERSION . '/boot.php');
         )
         ->execute(0)
         ->results();
-    print_r($tasks);
+    //print_r($tasks);
     foreach($tasks as $data){
         $task = new model_task();
         $task->load_by_data($data);
