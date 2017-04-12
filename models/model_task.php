@@ -280,7 +280,7 @@ namespace adapt\scheduler{
                 $this->status = 'spawned';
                 $this->date_last_run = new sql_now();
                 if ($this->save()){
-                    $bundle = $this->bundles->load('scheduler', '1.0');
+                    $bundle = $this->bundles->load_bundle('scheduler');
                     if ($bundle->is_loaded){
                         $path = ADAPT_PATH . "scheduler/scheduler-{$bundle->version}/cli/task.php";
                         
