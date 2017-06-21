@@ -3,7 +3,7 @@
     <bundle>
         <name>scheduler</name>
         <label>Cron style task manager</label>
-        <version>1.0.0</version>
+        <version>0.7.0</version>
         <type>extension</type>
         <namespace>\adapt\scheduler</namespace>
         <version_status>release</version_status>
