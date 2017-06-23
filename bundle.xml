@@ -9,7 +9,18 @@
         <version_status>release</version_status>
         <availability>public</availability>
         <description>Provides an easy to use task management system for scheduling or running background tasks.</description>
-        <copyright>2015 Adapt Framework</copyright>
+        <copyright>2017 Matt Bruton</copyright>
+        <license>MIT</license>
+        <vendor>
+            <name>Adapt Framework</name>
+            <website>https://www.adaptframework.com</website>
+        </vendor>
+        <authors>
+            <author>
+                <name>Matt Bruton</name>
+                <email>matt.bruton@gmail.com</email>
+            </author>
+        </authors>
         <depends_on>
             <bundle>
                 <name>adapt</name>
