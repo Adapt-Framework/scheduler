@@ -25,7 +25,7 @@ namespace adapt\scheduler{
         public function set_progress($progress){
             $progress = intval($progress);
             if ($progress >= 0 && $progress <= 100 && $this->_log->is_loaded){
-                $this->_log->progress = $progress;
+//                $this->_log->progress = $progress;
                 $this->_log->save();
             }
         }
